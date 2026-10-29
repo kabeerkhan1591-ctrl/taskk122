@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+}
+
+h1 {
+    text-align: center;
+    font-size: clamp(1.4rem, 5vw, 2.5rem);
+}
+
+.div {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 7 / 5;          /* 700 x 500 ka ratio, har screen par same rehta hai */
+    margin: 0 auto;
+    border: 10px solid red;
+    overflow: hidden;             /* images border ke andar hi rahengi */
+
+    background-image: url('https://tse1.mm.bing.net/th/id/OIP.y3z8MrVgxf-ayb0fStsS3QHaE8?r=0&pid=Api&h=220&P=0');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.div img {
+    position: absolute;
+    left: 100%;                   /* shuru mein box ke bahar (right side) */
+    width: 40%;                   /* box ke hisaab se chhoti/badi hoti hai */
+    height: auto;
+    animation: fly 10s linear infinite;
+}
+
+.airplane {
+    top: 12%;
+    animation-duration: 9s;
+}
+
+.helicopter {
+    top: 58%;
+    animation-duration: 12s;
+}
+
+/* right se left ki taraf udna (marquee jaisa) */
+@keyframes fly {
+    from { left: 100%; }
+    to   { left: -45%; }
+}
+
+/* Chhoti screens (phone) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .div {
+        border-width: 6px;
+    }
+
+    .div img {
+        width: 48%;               /* phone par thodi bari taake saaf dikhe */
+    }
+}
+
+/* Jin logon ne device par animation band ki ho */
+@media (prefers-reduced-motion: reduce) {
+    .div img {
+        animation: none;
+        left: 25%;
+    }
+}
